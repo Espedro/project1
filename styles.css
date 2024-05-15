@@ -1,0 +1,214 @@
+
+body {
+  padding: 0;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1{
+
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.button {
+  font-size: 20px;
+  background-color: #870007;
+  color: #fff;
+  padding: 10px 40px;
+  border: 0;
+  box-shadow: 0;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.gamestart{
+
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  color: #ffffff;
+  margin: 0px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(248, 247, 216, 0.7);
+  background-image: url("img1.jpg");
+  background-size:cover;
+  box-shadow: inset 0 0 0 1000px rgba(38, 5, 181, 0.5);
+  
+}
+
+.ball{
+
+width: 25vh;
+
+}
+
+
+
+.gameScreen{
+
+  width: 100%;
+  /* height: 0; */
+  height: 100vh;
+  background-color: black;
+  color: #ffffff;
+  margin: 0px;
+  position: fixed;
+  display: none;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: rgba(248, 247, 216, 0.7);
+  background-image: url("img2.png");
+  background-size:cover;
+  box-shadow: inset 0 0 0 1000px rgba(2, 114, 36, 0.5);
+  z-index: 1
+  
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.bggoal{
+
+  height: 300px;
+  width: 500px;
+  /* border: #fff solid 1px;
+  border-bottom: 1px !important; */
+  background-position: center;
+  background-position-y: center;
+  background-position-y: -140px;
+
+}
+
+.kickerred{
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 30vh;
+  height: 500px;
+  background-image: url(kickerred.png);
+  z-index: 99;
+
+}
+
+.kickeryellow{
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 30vh;
+  background-image: url(kickeryellow.png);
+  z-index: 11;
+
+}
+
+.ball_original {
+  width: 60px;
+  height: 60px;
+  background-image: url(ball.png);
+  background-size: 102%;
+  background-repeat: no-repeat;
+  position: relative;
+
+  border-radius: 50%;
+}
+
+
+
+
+
+.field {
+  position: relative;
+  width: 600px;
+  height: 300px;
+  border: 2px solid #ffffff;
+  border-bottom: 0px !important;
+  background-color: #4CAF50 0.5; /* Green background */
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.grid {
+  grid-column: span 6;
+  height: 100%;
+}
+
+#goalkeeper, #penalty-kicker {
+  position: absolute;
+  bottom: 10px; /* Adjust as needed */
+  width: 50px;
+  height: 100px;
+}
+
+#goalkeeper {
+  left: calc(50% - 25px); /* Centered */
+  background-image: url(keeper.png);
+  height: 220px;
+  background-size: cover;
+}
+
+#penalty-kicker {
+  width: 60px;
+  height: 60px;
+  background-size: 102%;
+  background-image: url(ball.png);
+  margin-bottom: 60px;
+}
+
+.grid1 {
+  text-align: center;
+  background-color: white;
+  font-size: 1.3em;
+  font-weight: 200;
+}
+
+.gameGrid {
+  position: relative;
+  margin-top: 40px;
+  margin-right: 244px;
+  margin-left: 244px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 80px 80px;
+  column-gap: 100px;
+  row-gap: 100px;
+  background-color: white;
+  opacity: 10%;
+  font-size: 55px;
+}
+
+.scoreboard {
+  margin-top: 100px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: #FFF;
+  background-color: #333;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #FFF;
+}
+
+#game-end {
+  display: none;
+  height: 0
+}

@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css" />
+
   <title>Shoot to save lives</title>
 </head>
+
 <body>
-  
+  <!-- Game Start -->
+  <div id="game-start" class="gamestart">
+
+    <div> <img src="ball.gif" alt="" class="ball"> </div>
+
+    <div>
+      <h1> Welcome to the ultimate <br> shootout competition</h1>
+    </div>
+
+    <div>
+
+      <button class="button" id="start-button"> Start Game </button>
+
+
+    </div>
+
+  </div>
+
+  <!-- End of Game Start -->
+  <!-- <div id="game-instruction"></div> -->
+
+
+  <!--   Start of Gamme Screen -->
+  <div id="gameScreen" class="container gameScreen">
+
+
+    <div class="scoreboard">Score: <span id="team1Score">0</span> - <span id="team2Score">0</span></div>
+
+
+    <div class="field">
+      <div class="grid gameGrid">
+
+        <div class="grid1" id="1">1</div>
+        <div class="grid1" id="2">2</div>
+        <div class="grid1" id="3">3</div>
+        <div class="grid1" id="4">4</div>
+        <div class="grid1" id="5">5</div>
+        <div class="grid1" id="6">6</div>
+      </div>
+
+      <div id="goalkeeper"></div>
+    </div>
+
+    <div id="penalty-kicker"></div>
+
+  </div>
+
+  <!--   End of Gamme Screen -->
+
+  <!-- Start of Game End screen -->
+  <div id="game-end">
+
+  </div>
+  <!-- End of Game End screen -->
+
+
+
+
+  <script type="text/javascript" src="game.js"></script>
+  <script type="text/javascript" src="script.js"></script>
 </body>
+
 </html>
