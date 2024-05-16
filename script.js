@@ -1,6 +1,4 @@
 window.onload = function () {
-  console.log("loaded!!!")
-
   const startButton = document.getElementById("start-button")
   const restartButton = document.getElementById("restart-button")
 
@@ -13,7 +11,6 @@ window.onload = function () {
   function startGame() {
     game = new Game()
     game.start()
-    console.log("Starting game.....")
 
     let zone1 = document.getElementById("1")
     let zone2 = document.getElementById("2")
@@ -24,49 +21,155 @@ window.onload = function () {
 
     let zones = [zone1, zone2, zone3, zone4, zone5, zone6]
 
+    let zone1Rect = zone1.getBoundingClientRect()
+    let zone2Rect = zone2.getBoundingClientRect()
+    let zone3Rect = zone3.getBoundingClientRect()
+    let zone4Rect = zone4.getBoundingClientRect()
+    let zone5Rect = zone5.getBoundingClientRect()
+    let zone6Rect = zone6.getBoundingClientRect()
+
+    let goalieRect = game.goalie.getBoundingClientRect()
+
     zones.forEach((zone) => {
       let thisId = zone.getAttribute("id")
 
+      console.log(`I've clicked on Zone: ${thisId}`)
+
       let ballRect = game.ball.getBoundingClientRect()
-      console.log("this is ball rect", ballRect)
+
       zone.addEventListener("click", (e) => {
+        e.stopPropagation()
+        e.stopImmediatePropagation()
+        e.preventDefault()
+
+        game.blockingDiv.style.zIndex = "99"
+
         let initialX = ballRect.left
         let initialY = ballRect.top
 
         let stepX = (e.x - 30 - initialX) / 5
         let stepY = (e.y - 30 - initialY) / 5
 
-        console.log("These are the steps", stepX, stepY)
         let counter = 0
         let ballInterval
         ballInterval = setInterval(() => {
           if (counter < 5) {
             initialX += stepX
             initialY += stepY
-            console.log("this is the value of X's", initialX, stepX)
+
             game.ball.style.left = `${initialX}px`
             game.ball.style.top = `${initialY}px`
-            console.log("incrementing")
             counter += 1
           } else {
-            console.log("Stopped interval", counter)
             clearInterval(ballInterval)
             setTimeout(() => {
               game.ball.style.left = `${ballRect.left}px`
               game.ball.style.top = `${ballRect.top}px`
+              game.blockingDiv.style.zIndex = "0"
             }, 1000)
           }
         }, 100)
 
-        // console.log(`We hace clicked zone ${thisId}`)
-        // console.log("this is e ===>", e)
-        // console.log("This is the ball ===>", game.ball)
+        let goalieInitialX = goalieRect.x
+        let goalieInitialY = goalieRect.y
 
-        // console.log("This is the X difference", game.ball.style.left, game.ball.style.top, e.x - 30)
-        // game.ball.style.left = `${e.x - 30}px`
-        // game.ball.style.top = `${e.y - 30}px`
-        // console.log("This is they Y difference", ballRect.top - e.y - 30)
-        // console.log("Ball after", ballRect.left, ballRect.top)
+        let randomNumber = Math.ceil(Math.random() * 10)
+
+        console.log("This is our random", randomNumber)
+
+        // let goalieRect = game.goalie.getBoundingClientRect()
+        if (randomNumber > 7) {
+
+          game.otherTeamScore++
+          console.log("Greater than 5")
+
+          game.goalie.style.left = `${e.x - 25}px`
+          game.goalie.style.top = `${e.y - 110}px`
+        } else {
+          let randomDiv = Math.ceil(Math.random() * 6)
+
+          console.log("Random div!!!!!!!!!!!!!!!", randomDiv)
+
+          if (randomNumber !== randomDiv) {
+            game.team1Score++
+            setTimeout(() => {
+              game.goalSreen.style.display = 'inline'
+              game.goalScreen.style.height = "fit-content"
+            }, 500);
+  
+            setTimeout(() => {
+              game.goalSreen.style.display = 'none'
+              game.goalScreen.style.height = "0"
+            }, 1500);
+          } else {
+            game.otherTeamScore++
+          }
+
+
+
+          // zone1Rect
+          // zone2Rect
+          // zone3Rect
+          // zone4Rect
+          // zone5Rect
+          // zone6Rect
+
+          switch (true) {
+            case randomDiv === 1:
+
+              game.goalie.style.left = `${zone1Rect.x}px`
+              game.goalie.style.top = `${zone1Rect.y}px`
+
+              console.log("RANDOM BLOCKING!!!!!")
+
+              break
+            case randomDiv === 2:
+              game.goalie.style.left = `${zone2Rect.x}px`
+              game.goalie.style.top = `${zone2Rect.y}px`
+
+              console.log("RANDOM BLOCKING!!!!!")
+
+              break
+            case randomDiv === 3:
+              game.goalie.style.left = `${zone3Rect.x}px`
+              game.goalie.style.top = `${zone3Rect.y}px`
+
+              console.log("RANDOM BLOCKING!!!!!")
+
+              break
+            case randomDiv === 4:
+              game.goalie.style.left = `${zone4Rect.x}px`
+              game.goalie.style.top = `${zone4Rect.y}px`
+
+              console.log("RANDOM BLOCKING!!!!!")
+
+              break
+            case randomDiv === 5:
+              game.goalie.style.left = `${zone4Rect.x}px`
+              game.goalie.style.top = `${zone4Rect.y}px`
+
+              console.log("RANDOM BLOCKING!!!!!")
+
+              break
+            case randomDiv === 5:
+              game.goalie.style.left = `${zone5Rect.x}px`
+              game.goalie.style.top = `${zone5Rect.y}px`
+
+              console.log("RANDOM BLOCKING!!!!!")
+
+              break
+          }
+        }
+
+        setTimeout(() => {
+          game.goalie.style.left = `${goalieInitialX}px`
+          game.goalie.style.top = `${goalieInitialY}px`
+          game.team1ScoreDiv.innerHTML = `${game.team1Score}`
+          game.otherTeamScoreDiv.innerHTML = `${game.otherTeamScore}`
+          setTimeout(() => {      
+            game.isGameOver()
+          }, 100);
+        }, 1500)
       })
     })
   }
